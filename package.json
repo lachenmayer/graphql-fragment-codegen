@@ -1,10 +1,21 @@
 {
   "name": "graphql-fragment-codegen",
   "version": "1.1.0",
-  "description": "Generate fragments on GraphQL types that contain all the fields defined in each type",
+  "description":
+    "Generate fragments on GraphQL types that contain all the fields defined in each type",
+  "author": "harry lachenmayer <harrylachenmayer@gmail.com>",
   "license": "MIT",
   "main": "index.js",
-  "bin": "index.js",
+  "bin": {
+    "graphql-fragment-codegen": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lachenmayer/graphql-fragment-codegen"
+  },
+  "bugs": {
+    "url": "https://github.com/lachenmayer/graphql-fragment-codegen/issues"
+  },
   "scripts": {
     "test": "./test.sh"
   },
