@@ -1,10 +1,14 @@
 {
-  "name": "fragment-codegen",
+  "name": "graphql-fragment-codegen",
   "version": "1.0.0",
   "description":
-    "Generate fragments on GraphQL types that contain all the fields defined in that type",
-  "main": "index.js",
+    "Generate fragments on GraphQL types that contain all the fields defined in each type",
   "license": "MIT",
+  "main": "index.js",
+  "bin": "index.js",
+  "scripts": {
+    "test": "./test.sh"
+  },
   "dependencies": {
     "get-stdin": "^5.0.1",
     "graphql": "^0.11.7"
