@@ -33,7 +33,8 @@ function makeFragments(schemaContents) {
     ({ kind, name }) =>
       kind === 'OBJECT' &&
       !name.startsWith('__') &&
-      name !== schema.queryType.name,
+      name !== schema.queryType.name &&
+      name !== schema.mutationType.name,
   )
   const typesByName = index(types, 'name')
   const definitions = types

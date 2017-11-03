@@ -2,12 +2,17 @@
 diff <(./index.js <<EOF
 schema {
   query: Query
+  mutation: Mutation
 }
 
 type Query {
   foo: Foo
   bar: Bar
   ignoreStuffWithArgs(becauseWeDunnoWhatTheyAre: Boolean): ID
+}
+
+type Mutation {
+  ignoreMutations: Bar
 }
 
 type Foo {
