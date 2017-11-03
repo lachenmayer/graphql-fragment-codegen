@@ -1,8 +1,7 @@
 {
   "name": "graphql-fragment-codegen",
-  "version": "1.1.1",
-  "description":
-    "Generate fragments on GraphQL types that contain all the fields defined in each type",
+  "version": "1.2.0",
+  "description": "Generate fragments on GraphQL types that contain all the fields defined in each type",
   "author": "harry lachenmayer <harrylachenmayer@gmail.com>",
   "license": "MIT",
   "main": "index.js",
