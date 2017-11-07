@@ -5,6 +5,8 @@ const getStdin = require('get-stdin')
 const { buildASTSchema, graphql, parse } = require('graphql')
 const { introspectionQuery } = require('graphql/utilities')
 
+const log = x => (console.trace(x), x)
+
 // Turns an array of objects into an object indexed by a given field.
 function index(array, field) {
   const index = {}
@@ -53,7 +55,7 @@ function makeFragments(schemaContents) {
     .map(field => printField(field, typesByName))
     // Some fields should not be printed, ie. fields with arguments.
     // Remove those from the output by returning null from printField.
-    .filter(id => id)
+    .filter(field => field != null)
     .join(indentedLine(1))}
 }
 `,
@@ -71,19 +73,20 @@ export const ${name} = \`${fragment}\`
 
 function printField(field, typesByName, indent = 1) {
   const { name, type } = field
+  if ('args' in field && field.args.length > 0) {
+    return null
+  }
   if (type.kind === 'SCALAR') {
     return name
   }
   if (type.kind === 'OBJECT') {
-    if (field.args.length > 0) {
-      return null
-    }
     return (
       name +
       ' {' +
       indentedLine(indent + 1) +
       typesByName[type.name].fields
         .map(field => printField(field, typesByName, indent + 1))
+        .filter(field => field != null)
         .join(indentedLine(indent + 1)) +
       indentedLine(indent) +
       '}'
@@ -98,6 +101,9 @@ function printField(field, typesByName, indent = 1) {
 
 async function main() {
   const stdin = await getStdin()
+  if (stdin === '') {
+    process.exit(1)
+  }
   const schemaContents = await introspect(stdin)
   process.stdout.write(makeFragments(schemaContents))
 }

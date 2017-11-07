@@ -1,0 +1,44 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  foo: Foo
+  bar: Bar
+  ignoreStuffWithArgs(becauseWeDunnoWhatTheyAre: Boolean): ID
+}
+
+type Mutation {
+  ignoreMutations: Bar
+}
+
+type Foo {
+  scalar: Int
+  object: Bar
+  # Comments should not get printed.
+  scalarList: [Int]
+  objectList: [Bar]
+  deeplyNested: DeeplyNested
+}
+
+type Bar {
+  yay: Boolean
+  ok: Boolean
+}
+
+type DeeplyNested {
+  shouldNest: Boolean
+  shouldIndentCorrectly: VeryDeeplyNested
+}
+
+type VeryDeeplyNested {
+  foo: String
+  indentingCorrectly: VeryVeryDeeplyNested
+  noArgs(foo: Int, bar: Int): Int
+}
+
+type VeryVeryDeeplyNested {
+  foo: String
+  indentingCorrectly: String
+}
